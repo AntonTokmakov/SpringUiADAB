@@ -4,26 +4,23 @@ import jakarta.persistence.*;
 import org.hibernate.annotations.GeneratedColumn;
 
 @Entity
-@Table(name = "product")
+@Table(name = "products")
 public class Product {
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "product_id")
     private Long id;
 
-    @Column(name = "title")
+    @Column(name = "product_title")
     private String title;
 
-    @Column(name = "price")
+    @Column(name = "product_price")
     private int price;
 
     public Product() {
     }
 
-    public Product(Long id, String title, int price) {
-        this.id = id;
+    public Product(String title, int price) {
         this.title = title;
         this.price = price;
     }
@@ -50,5 +47,14 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", price=" + price +
+                '}';
     }
 }

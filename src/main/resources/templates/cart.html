@@ -16,14 +16,14 @@
 <body>
 
 <div>
-    <div th:replace="~{navigation :: navigation(Shop)}"></div>
+    <div th:replace="~{navigation :: navigation(Cart)}"></div>
 </div>
 
-<h1>Shop</h1>
+<h1>Корзина</h1>
 
 <div class="container">
 <!--    Условие, если таблица пустая, таблицу не отображать-->
-    <span th:if="${products.size() == 0}">Таблица продуктов пуста</span>
+    <span th:if="${products.size() == 0}">Таблица корзины пуста</span>
     <table th:if="${products.size() > 0}" class="table">
         <thead class="table-header">
         <tr>
@@ -40,15 +40,12 @@
             <td th:text="${product.getId()}"></td>
             <td th:text="${product.getTitle()}"></td>
             <td th:text="${product.getPrice()}"></td>
-            <td><a class="btn btn-secondary" th:href="@{'/details/' + ${product.getId()}}">Информация</a></td>
-            <td><a class="btn btn-success" th:href="@{'/cart/add/' + ${product.getId()}}">Добавить</a></td>
+            <td><a th:href="@{'/details/' + ${product.getId()}}">Информация</a></td>
             <td><a class="btn btn-danger" th:href="@{'/delete/' + ${product.getId()}}">Удалить</a></td>
         </tr>
         </tbody>
 
     </table>
 </div>
-
-<button class="btn btn-primary">Кнопка</button>
 </body>
 </html>

@@ -1,7 +1,7 @@
 package com.example.springuiadab.services;
 
 import com.example.springuiadab.entities.Product;
-import com.example.springuiadab.repositories.ProductRepositories;
+import com.example.springuiadab.repositories.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,23 +10,23 @@ import java.util.List;
 @Service
 public class ProductServices {
 
-    private ProductRepositories productRepositories;
+    private ProductRepository productRepository;
 
     @Autowired
-    public void setProductRepositories(ProductRepositories productRepositories) {
-        this.productRepositories = productRepositories;
+    public void setProductRepositories(ProductRepository productRepositories) {
+        this.productRepository = productRepositories;
     }
 
     public List<Product> getAllProduct(){
-        return productRepositories.getProducts();
+        return productRepository.findAll();
     }
 
     public Product getProductById(Long id){
-        return productRepositories.getProducts().get(id.intValue() - 1);
+        return productRepository.getOne(id - 1);
     }
 
     public void deleteProductById(Long id){
-        productRepositories.deleteById(id);
+        productRepository.deleteById(id);
     }
 
 }
