@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Подключение CSS-стилей Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Подключение JS-скриптов Bootstrap -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+    <!-- Подключение jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+    <title>Приложение</title>
+
+</head>
+<body>
+<h1>Заголовок страницы</h1>
+<p>Shop</p>
+
+<div class="container">
+<!--    Условие, если таблица пустая, таблицу не отображать-->
+    <span th:if="${products.size() == 0}">Таблица продуктов пуста</span>
+    <table th:if="${products.size() > 0}" class="table">
+        <thead class="table-header">
+        <tr>
+            <th>ID</th>
+            <th>Title</th>
+            <th>Price</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+
+        <tbody scope="row">
+        <tr th:each="product : ${products}" >
+            <td th:text="${product.getId()}"></td>
+            <td th:text="${product.getTitle()}"></td>
+            <td th:text="${product.getPrice()}"></td>
+            <td><a th:href="@{'/details/' + ${product.getId()}}">Информация</a></td>
+            <td><a class="btn btn-danger" th:href="@{'/delete/' + ${product.getId()}}">Удалить</a></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
+<button class="btn btn-primary">Кнопка</button>
+</body>
+</html>
